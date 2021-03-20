@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  
+  password-api-1:
+    build: ./passwordapi-1
+    ports:
+        - "8001:8080"
+
+  password-api-2:
+    build: ./passwordapi-2
+    ports:
+        - "8002:8080"
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "8080:80"
+    depends_on:
+    - password-api-1
+    - password-api-2

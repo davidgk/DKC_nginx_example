@@ -3,11 +3,13 @@ version: '2'
 services:
   
   password-api-1:
-    build: ./passwordapi-1
+    # using images to build it
+    image: davidgk/ejercicio_04:1
     ports:
         - "8001:8080"
 
   password-api-2:
+    # using internal docker file to build it
     build: ./passwordapi-2
     ports:
         - "8002:8080"

@@ -4,15 +4,23 @@ services:
   
   password-api-1:
     # using images to build it
-    image: davidgk/ejercicio_04:1
+    image: nicopaez/password-api
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:8001/health"]
+      interval: 5s
+      retries: 5
     ports:
-        - "8001:8080"
+        - "8001:3000"
 
   password-api-2:
     # using internal docker file to build it
-    build: ./passwordapi-2
+    image: nicopaez/password-api
+    healthcheck:
+      test: ["CMD-SHELL", "curl http://localhost:8002/health"]
+      interval: 5s
+      retries: 5
     ports:
-        - "8002:8080"
+        - "8002:3000"
 
   nginx:
     build: ./nginx
